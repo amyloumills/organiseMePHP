@@ -49,6 +49,9 @@
         </form>
         <h2>My Notes</h2>
 
+        <!-- replace loop with getById call -->
+
+
         <?php foreach ($existingNotes as $note) : ?>
             <div class="allNotesContent">
                 <h3><?= htmlspecialchars($note->getTitle()); ?></h3>
@@ -56,16 +59,17 @@
                 <div class="editDeleteBtn">
                     <form method="POST" action="NoteDelete.php">
                         <input type="hidden" name="note_id" value="<?= $note->getId(); ?>">
-                        <button type="submit">Delete Note</button>
+                        <button type="submit">Delete</button>
 
                     </form>
                     <form method="GET" action="NoteEditView.php">
                         <input type="hidden" name="note_id" value="<?= $note->getId(); ?>">
-                        <button type="submit">Edit Note</button>
+                        <button type="submit">Edit</button>
                     </form>
                 </div>
-            <?php endforeach; ?>
             </div>
+        <?php endforeach; ?>
+
     </body>
 
     </html>
