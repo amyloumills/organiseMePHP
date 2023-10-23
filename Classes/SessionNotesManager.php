@@ -57,4 +57,14 @@ class SessionNotesManager implements NotesManager
         }
         $_SESSION['notes'] = $this->notes;
     }
+
+    public function getById($noteId)
+    {
+        foreach ($this->notes as $note) {
+            if ($note->getId() === $noteId) {
+                return $note;
+            }
+        }
+        return null;
+    }
 }

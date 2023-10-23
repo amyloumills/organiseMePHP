@@ -9,8 +9,6 @@ function handleNoteCreation($formData, $notesManager)
     $notesManager->add($note);
 }
 
-
-
 function redirect($location)
 {
     header("Location: $location");

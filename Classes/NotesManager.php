@@ -6,8 +6,5 @@ interface NotesManager
     public function update(Note $note);
     public function delete($noteId);
     public function get();
+    public function getById($noteId);
 }
-
-
-// think about getbyid
-// replace loops with getbyid call
