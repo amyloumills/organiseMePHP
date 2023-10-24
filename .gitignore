@@ -1,0 +1,20 @@
+# Ignore system files and directories
+.vscode/
+.idea/
+.project
+.DS_Store
+
+# Ignore composer dependencies (if you use Composer)
+/vendor/
+
+# Ignore log files and temporary files
+*.log
+*.swp
+*.tmp
+
+# Ignore config files containing sensitive information
+config.ini
+
+# Ignore build and compiled files
+/build/
+/public/assets/
