@@ -27,19 +27,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_id'])) {
         <!DOCTYPE html>
         <html lang="en">
 
+        <head>
+            <link rel="stylesheet" type="text/css" href="style.css">
+        </head>
+
         <body>
             <h2>Edit Note</h2>
-            <form method="POST" action="NoteUpdate.php">
+            <form class="editNoteForm" method="POST" action="NoteUpdate.php">
                 <input type="hidden" name="note_id" value="<?= $editNote->getId(); ?>">
-                <div class="mb-3">
-                    <label for="title" class="form-label">Edit Note Title</label>
-                    <input type="text" name="title" value="<?= htmlspecialchars($editNote->getTitle()); ?>">
+                <div class="editFormTitle">
+                    <label for="title">Edit Note Title</label>
+                    <input class="editTitleInput" type="text" name="title" value="<?= htmlspecialchars($editNote->getTitle()); ?>">
                 </div>
-                <div class="mb-3">
-                    <label for="content" class="form-label">Edit Note Content</label>
-                    <textarea name="content"><?= htmlspecialchars($editNote->getContent()); ?></textarea>
+                <div class="editFormTitle noteInput">
+                    <label for="content">Edit Note Content</label>
+                    <textarea class="editTextboxInput" name="content"><?= htmlspecialchars($editNote->getContent()); ?></textarea>
                 </div>
-                <button type="submit">Update Note</button>
+                <button class="updateButton" type="submit">Update Note</button>
+                <a class="backButton" href="index.php">Cancel</a>
             </form>
         </body>
 

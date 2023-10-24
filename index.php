@@ -15,6 +15,7 @@
 
     $existingNotes = $notesManager->get();
 
+
     ?>
 
     <!DOCTYPE html>
@@ -29,7 +30,6 @@
     </head>
 
     <body>
-
         <h1>Organise Me is a simple note-taking app.</h1>
         <form class="addNoteForm" method="POST">
             <div class="formTitle">
@@ -49,8 +49,13 @@
         </form>
         <h2>My Notes</h2>
 
-        <!-- replace loop with getById call -->
-
+        <!-- Display all existing notes -->
+        <?php if (empty($existingNotes)) : ?>
+            <p>You have no notes.</p>
+        <?php endif; ?>
+        <?php if (!empty($existingNotes)) : ?>
+            <p>You have <?= count($existingNotes); ?> note(s).</p>
+        <?php endif; ?>
 
         <?php foreach ($existingNotes as $note) : ?>
             <div class="allNotesContent">

@@ -112,3 +112,44 @@ button:hover:after {
 .editDeleteBtn button {
   margin-right: 20px;
 }
+
+/* NoteEditView */
+
+.editNoteForm {
+  display: flex;
+  flex-flow: column wrap;
+  font-family: "Courier New", Courier, monospace;
+  width: fit-content;
+  margin-left: 20px;
+}
+
+.backButton {
+  text-decoration: none;
+}
+
+.updateButton {
+  margin: 20px 0;
+}
+
+.editTextboxInput {
+  height: 100px;
+
+  padding: 10px;
+  font-size: 20px;
+  vertical-align: top;
+  border: 2px solid #000000;
+}
+
+.editTitleInput {
+  font-size: 20px;
+  color: #000000;
+  margin-left: 20px;
+  padding: 10px;
+  border: 2px solid #000000;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.editFormTitle {
+  font-size: 20px;
+  color: #000000;
+}
