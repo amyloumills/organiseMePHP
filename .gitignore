@@ -18,3 +18,7 @@ config.ini
 # Ignore build and compiled files
 /build/
 /public/assets/
+
+# ignore database
+organiseMeDB.sqlite3
+/organiseMeDB

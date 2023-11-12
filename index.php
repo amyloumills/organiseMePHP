@@ -3,6 +3,7 @@
     require 'Classes/SessionNotesManager.php';
     require 'functions.php';
 
+    include 'dbconnection.php';
     session_start();
 
     $notesManager = new SessionNotesManager();
@@ -15,21 +16,12 @@
 
     $existingNotes = $notesManager->get();
 
+    $db = null;
+
 
     ?>
 
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <title>Organise Me</title>
-    </head>
-
-    <body>
+    <?php include "templates/header.php"; ?>
         <h1>Organise Me is a simple note-taking app.</h1>
         <form class="addNoteForm" method="POST">
             <div class="formTitle">
@@ -75,6 +67,5 @@
             </div>
         <?php endforeach; ?>
 
-    </body>
+    <?php include "templates/footer.php"; ?>
 
-    </html>

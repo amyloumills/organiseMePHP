@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_id'])) {
     $noteId = $_GET['note_id'];
     $existingNotes = $notesManager->get();
 
-    // Find the note with the given ID
     $editNote = null;
     foreach ($existingNotes as $note) {
         if ($note->getId() == $noteId) {
@@ -21,16 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_id'])) {
     }
 
     if ($editNote) {
-
 ?>
 
-        <!DOCTYPE html>
-        <html lang="en">
-
-        <head>
-            <link rel="stylesheet" type="text/css" href="style.css">
-        </head>
-
+        <?php include "templates/header.php"; ?>
         <body>
             <h2>Edit Note</h2>
             <form class="editNoteForm" method="POST" action="NoteUpdate.php">
@@ -46,18 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_id'])) {
                 <button class="updateButton" type="submit">Update Note</button>
                 <a class="backButton" href="index.php">Cancel</a>
             </form>
-        </body>
-
-        </html>
+        <?php include "templates/footer.php"; ?>
 
 <?php
         exit();
     } else {
-        // Handle case where note with the given ID was not found
         echo "Note not found.";
     }
 } else {
-    // Handle invalid or missing note_id parameter
     echo "Invalid request.";
 }
 ?>
