@@ -17,7 +17,6 @@ class SessionNotesManager implements NotesManager
     public function add(Note $note)
     {
         $this->notes[] = $note;
-        // set the notes in the session to be our notes
         $_SESSION['notes'] = $this->notes;
     }
 

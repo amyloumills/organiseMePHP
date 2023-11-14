@@ -1,6 +1,7 @@
     <?php
     require 'Classes/Note.php';
     require 'Classes/SessionNotesManager.php';
+    require 'Classes/NoteActions.php';
     require 'functions.php';
 
     include 'dbconnection.php';
@@ -10,7 +11,7 @@
 
     // Handle form submission to create a new note
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        handleNoteCreation($_POST, $notesManager);
+        NoteActions::handleNoteCreation($_POST, $notesManager);
         redirect('index.php');
     }
 
