@@ -18,6 +18,25 @@ class NoteActions {
         $updatedNote = new Note($noteId, $newTitle, $newContent);
         $notesManager->update($updatedNote);
     }
+
+    public static function handleNoteDelete($formData, $notesManager)
+    {
+        if (isset($formData['note_id'])) {
+            $noteId = $formData['note_id'];
+            $notesManager->delete($noteId);
+        }
+    }
+
+    public static function handleNoteGet($notesManager)
+    {
+        return $notesManager->get();
+    }
+
+    public function handleNoteGetById($formData, $notesManager)
+    {
+        $noteId = $formData['note_id'];
+        $notesManager->getById($noteId);
+    }
 }
 
 

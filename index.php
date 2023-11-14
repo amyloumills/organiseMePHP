@@ -15,7 +15,7 @@
         redirect('index.php');
     }
 
-    $existingNotes = $notesManager->get();
+    $allNotes = NoteActions::handleNoteGet($notesManager);
 
     $db = null;
 
@@ -43,17 +43,17 @@
         <h2>My Notes</h2>
 
         <!-- Display all existing notes -->
-        <?php if (empty($existingNotes)) : ?>
+        <?php if (empty($allNotes)) : ?>
             <p>You have no notes.</p>
         <?php endif; ?>
-        <?php if (!empty($existingNotes)) : ?>
-            <p>You have <?= count($existingNotes); ?> note(s).</p>
+        <?php if (!empty($allNotes)) : ?>
+            <p>You have <?= count($allNotes); ?> note(s).</p>
         <?php endif; ?>
 
-        <?php foreach ($existingNotes as $note) : ?>
+        <?php foreach ($allNotes as $note) : ?>
             <div class="allNotesContent">
-                <h3><?= htmlspecialchars($note->getTitle()); ?></h3>
-                <p><?= htmlspecialchars($note->getContent()); ?></p>
+                <h3><?= htmlspecialchars($note->getTitle()) ?></h3>
+                <p><?= htmlspecialchars($note->getContent()) ?></p>
                 <div class="editDeleteBtn">
                     <form method="POST" action="NoteDelete.php">
                         <input type="hidden" name="note_id" value="<?= $note->getId(); ?>">
