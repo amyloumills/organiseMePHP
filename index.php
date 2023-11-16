@@ -1,13 +1,16 @@
     <?php
-    require 'Classes/Note.php';
-    require 'Classes/SessionNotesManager.php';
-    require 'Classes/NoteActions.php';
-    require 'functions.php';
 
+    require 'Autoloader.php';
+    require 'functions.php';
     include 'dbconnection.php';
+
+    use Classes\SessionNotesManager;
+    use Classes\NoteActions;
+
     session_start();
 
     $notesManager = new SessionNotesManager();
+    $allNotes = NoteActions::handleNoteGet($notesManager);
 
     // Handle form submission to create a new note
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -15,10 +18,7 @@
         redirect('index.php');
     }
 
-    $allNotes = NoteActions::handleNoteGet($notesManager);
-
     $db = null;
-
 
     ?>
 
@@ -51,6 +51,7 @@
         <?php endif; ?>
 
         <?php foreach ($allNotes as $note) : ?>
+
             <div class="allNotesContent">
                 <h3><?= htmlspecialchars($note->getTitle()) ?></h3>
                 <p><?= htmlspecialchars($note->getContent()) ?></p>

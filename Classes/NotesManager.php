@@ -1,5 +1,7 @@
 <?php
 
+namespace Classes;
+
 interface NotesManager
 {
     public function add(Note $note);

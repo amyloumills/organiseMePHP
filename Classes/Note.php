@@ -1,5 +1,7 @@
 <?php
 
+namespace Classes;
+
 class Note
 {
     private $id;

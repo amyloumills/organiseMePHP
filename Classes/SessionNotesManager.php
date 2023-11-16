@@ -1,11 +1,13 @@
 <?php
 
-require 'Classes/NotesManager.php';
+namespace Classes;
+
+use Classes\Note;
 
 class SessionNotesManager implements NotesManager
 {
 
-    private $notes = []; // get rid of this. just deal with the session
+    private $notes = [];
 
     public function __construct()
     {

@@ -1,8 +1,9 @@
 <?php
-require_once 'Classes/Note.php';
-require_once 'Classes/SessionNotesManager.php';
-require_once 'Classes/NoteActions.php';
+require 'Autoloader.php';
 require_once 'functions.php';
+
+use Classes\SessionNotesManager;
+use Classes\NoteActions;
 
 session_start();
 
