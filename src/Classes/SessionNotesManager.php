@@ -2,8 +2,6 @@
 
 namespace Classes;
 
-use Classes\Note;
-
 class SessionNotesManager implements NotesManager
 {
 

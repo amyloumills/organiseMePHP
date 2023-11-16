@@ -1,16 +1,15 @@
-    <?php
-
+<?php
+require 'Classes/Note.php';
+session_start();
     require 'Autoloader.php';
     require 'functions.php';
     include 'dbconnection.php';
-    include 'NoteCreate.php';
 
-    use Classes\SessionNotesManager;
     use Classes\NoteActions;
-
-    session_start();
+    use Classes\SessionNotesManager;
 
     $notesManager = new SessionNotesManager();
+
     $allNotes = NoteActions::handleNoteGet($notesManager);
 
     $db = null;
@@ -44,7 +43,6 @@
         <?php if (!empty($allNotes)) : ?>
             <p>You have <?= count($allNotes); ?> note(s).</p>
         <?php endif; ?>
-
         <?php foreach ($allNotes as $note) : ?>
 
             <div class="allNotesContent">
