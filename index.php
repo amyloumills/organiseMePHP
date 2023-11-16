@@ -3,6 +3,7 @@
     require 'Autoloader.php';
     require 'functions.php';
     include 'dbconnection.php';
+    include 'NoteCreate.php';
 
     use Classes\SessionNotesManager;
     use Classes\NoteActions;
@@ -12,19 +13,13 @@
     $notesManager = new SessionNotesManager();
     $allNotes = NoteActions::handleNoteGet($notesManager);
 
-    // Handle form submission to create a new note
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        NoteActions::handleNoteCreation($_POST, $notesManager);
-        redirect('index.php');
-    }
-
     $db = null;
 
     ?>
 
     <?php include "templates/header.php"; ?>
         <h1>Organise Me is a simple note-taking app.</h1>
-        <form class="addNoteForm" method="POST">
+        <form class="addNoteForm" method="POST" action="NoteCreate.php">
             <div class="formTitle">
                 <label for="title">Add your title</label>
                 <label>
