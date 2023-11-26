@@ -6,3 +6,19 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:80"
+    volumes:
+      - ./src:/var/www/html
+
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: organiseme
+      MYSQL_USER: amy
+      MYSQL_PASSWORD: Int3ll1g3nc3
+
+    volumes:
+        - ./mysql-data:/var/lib/mysql

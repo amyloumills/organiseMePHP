@@ -20,5 +20,5 @@ config.ini
 /public/assets/
 
 # ignore database
-organiseMeDB.sqlite3
-/organiseMeDB
+mysql/
+mysqldata/
