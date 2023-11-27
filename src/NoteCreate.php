@@ -1,13 +1,15 @@
 <?php
+global $conn;
+require_once 'connection.php';
 require_once 'functions.php';
 require_once __DIR__ . '/Autoloader.php';
 
 use Classes\NoteActions;
-use Classes\SessionNotesManager;
+use Classes\DatabaseNotesManager;
 
 session_start();
 
-$notesManager = new SessionNotesManager();
+$notesManager = new DatabaseNotesManager($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     NoteActions::handleNoteCreation($_POST, $notesManager);

@@ -1,14 +1,15 @@
 <?php
 require 'Classes/Note.php';
 session_start();
+global $conn;
 require 'Autoloader.php';
 require 'functions.php';
 require_once 'connection.php';
 
 use Classes\NoteActions;
-use Classes\SessionNotesManager;
+use Classes\DatabaseNotesManager;
 
-$notesManager = new SessionNotesManager();
+$notesManager = new DatabaseNotesManager($conn);
 
 $allNotes = NoteActions::handleNoteGet($notesManager);
 
@@ -29,8 +30,9 @@ $allNotes = NoteActions::handleNoteGet($notesManager);
             <textarea class="textboxInput" name="content" placeholder="Content"></textarea>
         </label>
     </div>
+    <input type="checkbox" name="pinned" value="1">Pinned</input>
+    <input type="checkbox" name="completed" value="1">Completed</input>
     <button class="createNoteButton" type="submit">Create Note</button>
-
 </form>
 <h2>My Notes</h2>
 
@@ -46,6 +48,8 @@ $allNotes = NoteActions::handleNoteGet($notesManager);
     <div class="allNotesContent">
         <h3><?= htmlspecialchars($note->getTitle()) ?></h3>
         <p><?= htmlspecialchars($note->getContent()) ?></p>
+        <p>Pinned: <?= $note->getPinned() ? 'Yes' : 'No'; ?></p>
+        <p>Completed: <?= $note->getCompleted() ? 'Yes' : 'No'; ?></p>
         <div class="editDeleteBtn">
             <form method="POST" action="NoteDelete.php">
                 <input type="hidden" name="note_id" value="<?= $note->getId(); ?>">
