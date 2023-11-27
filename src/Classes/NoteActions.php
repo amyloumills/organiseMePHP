@@ -8,7 +8,10 @@ class NoteActions {
         $title = $formData['title'];
         $content = $formData['content'];
 
-        $note = new Note(uniqid(), $title, $content);
+        $pinned = isset($formData['pinned']) ? $formData['pinned'] : null;
+        $completed = isset($formData['completed']) ? $formData['completed'] : null;
+
+        $note = new Note(uniqid(), $title, $content, $pinned, $completed);
         $notesManager->add($note);
     }
 
@@ -26,12 +29,9 @@ class NoteActions {
         $notesManager->update($existingNote);
     }
 
-    public static function handleNoteDelete($formData, $notesManager)
+    public static function handleNoteDelete($noteId, $notesManager)
     {
-        if (isset($formData['note_id'])) {
-            $noteId = $formData['note_id'];
             $notesManager->delete($noteId);
-        }
     }
 
     public static function handleNoteGet($notesManager)
