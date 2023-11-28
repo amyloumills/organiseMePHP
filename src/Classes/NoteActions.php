@@ -2,7 +2,8 @@
 
 namespace Classes;
 
-class NoteActions {
+class NoteActions
+{
     public static function handleNoteCreation($formData, $notesManager)
     {
         $title = $formData['title'];
@@ -20,18 +21,22 @@ class NoteActions {
         $noteId = $formData['note_id'];
         $newTitle = $formData['title'];
         $newContent = $formData['content'];
+        $pinned = isset($formData['pinned']) ? (bool)$formData['pinned'] : null;
+        $completed = isset($formData['completed']) ? (bool)$formData['completed'] : null;
 
         $existingNote = $notesManager->getById($noteId);
 
         $existingNote->setTitle($newTitle);
         $existingNote->setContent($newContent);
+        $existingNote->setPinned($pinned);
+        $existingNote->setCompleted($completed);
 
         $notesManager->update($existingNote);
     }
 
     public static function handleNoteDelete($noteId, $notesManager)
     {
-            $notesManager->delete($noteId);
+        $notesManager->delete($noteId);
     }
 
     public static function handleNoteGet($notesManager)

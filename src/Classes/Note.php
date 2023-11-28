@@ -60,4 +60,14 @@ class Note
     {
         $this->content = $content;
     }
+
+    public function setPinned($pinned)
+    {
+        $this->pinned = $pinned;
+    }
+
+    public function setCompleted($completed)
+    {
+        $this->completed = $completed;
+    }
 }

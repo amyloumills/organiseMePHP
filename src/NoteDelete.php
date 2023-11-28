@@ -4,11 +4,8 @@ require 'Autoloader.php';
 require_once 'functions.php';
 require_once 'connection.php';
 
-
 use Classes\NoteActions;
 use Classes\DatabaseNotesManager;
-
-session_start();
 
 $notesManager = new DatabaseNotesManager($conn);
 

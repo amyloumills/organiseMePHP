@@ -1,15 +1,14 @@
 <?php
 require 'Autoloader.php';
 require_once 'functions.php';
+require_once 'connection.php';
 
 use Classes\NoteActions;
-use Classes\SessionNotesManager;
+use Classes\DatabaseNotesManager;
 
-session_start();
+$notesManager = new DatabaseNotesManager($conn);
 
-$notesManager = new SessionNotesManager();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['note_id'])) {
     NoteActions::handleNoteUpdate($_POST, $notesManager);
     redirect('index.php');
 } else {

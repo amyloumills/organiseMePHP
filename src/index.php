@@ -1,11 +1,9 @@
 <?php
 require 'Classes/Note.php';
-session_start();
-global $conn;
 require 'Autoloader.php';
 require 'functions.php';
 require_once 'connection.php';
-
+global $conn;
 use Classes\NoteActions;
 use Classes\DatabaseNotesManager;
 
@@ -17,6 +15,9 @@ $allNotes = NoteActions::handleNoteGet($notesManager);
 
 <?php include "templates/header.php"; ?>
 <h1>Organise Me is a simple note-taking app.</h1>
+
+<!-- Add a new note -->
+
 <form class="addNoteForm" method="POST" action="NoteCreate.php">
     <div class="formTitle">
         <label for="title">Add your title</label>
@@ -30,13 +31,16 @@ $allNotes = NoteActions::handleNoteGet($notesManager);
             <textarea class="textboxInput" name="content" placeholder="Content"></textarea>
         </label>
     </div>
-    <input type="checkbox" name="pinned" value="1">Pinned</input>
-    <input type="checkbox" name="completed" value="1">Completed</input>
+    <input type="checkbox" name="pinned" value="0">Pinned</input>
+    <input type="checkbox" name="completed" value="0">Completed</input>
     <button class="createNoteButton" type="submit">Create Note</button>
 </form>
 <h2>My Notes</h2>
 
 <!-- Display all existing notes -->
+<!-- var dump notes -->
+<?php var_dump($allNotes); ?>
+
 <?php if (empty($allNotes)) : ?>
     <p>You have no notes.</p>
 <?php endif; ?>

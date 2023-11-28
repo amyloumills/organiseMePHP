@@ -7,8 +7,6 @@ require_once __DIR__ . '/Autoloader.php';
 use Classes\NoteActions;
 use Classes\DatabaseNotesManager;
 
-session_start();
-
 $notesManager = new DatabaseNotesManager($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

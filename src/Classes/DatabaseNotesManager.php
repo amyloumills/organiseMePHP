@@ -20,11 +20,11 @@ class DatabaseNotesManager implements NotesManager
         $stmt->bindValue(':content', $note->getContent(), \PDO::PARAM_STR);
         $stmt->bindValue(':created_at', $note->getCreatedAt() ? $note->getCreatedAt()->format('Y-m-d H:i:s') : null, \PDO::PARAM_STR);
 
-        $pinned = $note->getPinned();
+        //$pinned = $note->getPinned();
         $completed = $note->getCompleted();
 
-        $stmt->bindValue(':pinned', $pinned !== null ? $pinned : null, $pinned !== null ? \PDO::PARAM_BOOL : \PDO::PARAM_NULL);
-        $stmt->bindValue(':completed', $completed !== null ? $completed : null, $completed !== null ? \PDO::PARAM_BOOL : \PDO::PARAM_NULL);
+        $stmt->bindValue(':pinned', $note->getPinned(), \PDO::PARAM_BOOL);
+        $stmt->bindValue(':completed', $note->getCompleted(), \PDO::PARAM_BOOL);
 
         $stmt->execute();
     }
@@ -64,21 +64,38 @@ class DatabaseNotesManager implements NotesManager
         $stmt->execute();
     }
 
-
-
-    // need to finish this
     public function update(Note $updatedNote)
     {
-        $sql = "UPDATE notes SET title = :title, content = :content WHERE id = :id";
+        $sql = "UPDATE notes SET title = :title, content = :content, pinned = :pinned, completed = :completed WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':title', $updatedNote->getTitle(), \PDO::PARAM_STR);
         $stmt->bindValue(':content', $updatedNote->getContent(), \PDO::PARAM_STR);
+        $stmt->bindValue(':pinned', $updatedNote->getPinned(), \PDO::PARAM_BOOL);
+        $stmt->bindValue(':completed', $updatedNote->getCompleted(), \PDO::PARAM_BOOL);
         $stmt->bindValue(':id', $updatedNote->getId(), \PDO::PARAM_INT);
         $stmt->execute();
     }
     public function getById($noteId)
     {
-        // to do
+
+        $sql = "SELECT * FROM notes WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':id', $noteId, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        $noteData = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if (!$noteData) {
+            return null;
+        }
+
+        return new Note(
+            $noteData['id'],
+            $noteData['title'],
+            $noteData['content'],
+            new \DateTime($noteData['created_at']),
+            isset($noteData['pinned']) ? (bool)$noteData['pinned'] : null,
+            isset($noteData['completed']) ? (bool)$noteData['completed'] : null
+        );
     }
 }
-

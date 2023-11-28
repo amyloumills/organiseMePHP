@@ -1,13 +1,12 @@
 <?php
+global $conn;
 require 'Autoloader.php';
 require_once 'functions.php';
+require_once 'connection.php';
 
-use Classes\SessionNotesManager;
+use Classes\DatabaseNotesManager;
 
-
-session_start();
-
-$notesManager = new SessionNotesManager();
+$notesManager = new DatabaseNotesManager($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_id'])) {
     $noteId = $_GET['note_id'];
@@ -25,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_id'])) {
 ?>
 
         <?php include "templates/header.php"; ?>
+
         <body>
             <h2>Edit Note</h2>
             <form class="editNoteForm" method="POST" action="NoteUpdate.php">
@@ -40,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_id'])) {
                 <button class="updateButton" type="submit">Update Note</button>
                 <a class="backButton" href="index.php">Cancel</a>
             </form>
-        <?php include "templates/footer.php"; ?>
+            <?php include "templates/footer.php"; ?>
 
-<?php
+    <?php
         exit();
     } else {
         echo "Note not found.";
@@ -50,4 +50,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_id'])) {
 } else {
     echo "Invalid request.";
 }
-?>
+    ?>
