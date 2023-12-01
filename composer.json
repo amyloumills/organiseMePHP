@@ -1,0 +1,10 @@
+{
+  "name": "amy/organise-me-php",
+  "autoload": {
+    "psr-4": {
+      "OrganiseMePhp\\": "src/",
+      "OrganiseMePhp\\Classes\\": "src/classes/"
+    }
+  },
+  "require": {}
+}

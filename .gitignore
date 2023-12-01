@@ -4,7 +4,7 @@
 .project
 .DS_Store
 
-# Ignore composer dependencies (if you use Composer)
+# Ignore Composer files
 /vendor/
 
 # Ignore log files and temporary files
@@ -20,5 +20,5 @@ config.ini
 /public/assets/
 
 # ignore database
-mysql/
-mysqldata/
+/mysql/
+/mysql-data/

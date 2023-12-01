@@ -2,7 +2,6 @@
 global $conn;
 require_once 'connection.php';
 require_once 'functions.php';
-require_once __DIR__ . '/Autoloader.php';
 
 use Classes\NoteActions;
 use Classes\DatabaseNotesManager;

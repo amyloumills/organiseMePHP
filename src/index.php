@@ -1,11 +1,14 @@
 <?php
+require '/vendor/autoload.php';
 require 'Classes/Note.php';
-require 'Autoloader.php';
 require 'functions.php';
 require_once 'connection.php';
 global $conn;
+
 use Classes\NoteActions;
 use Classes\DatabaseNotesManager;
+
+
 
 $notesManager = new DatabaseNotesManager($conn);
 

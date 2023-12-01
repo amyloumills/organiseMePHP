@@ -1,5 +1,5 @@
 <?php
-require 'Autoloader.php';
+global $conn;
 require_once 'functions.php';
 require_once 'connection.php';
 
